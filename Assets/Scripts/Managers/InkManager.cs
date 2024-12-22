@@ -25,12 +25,14 @@ public class InkManager : MonoBehaviour
         EventManager.Unsubscribe(EventType.NARRATIVE_SEND_SCRIPT, ScriptHandler);
     }
 
-    // Assigning the Story with a new TextAsset
+    // Assigning the Story with a new TextAsset and
+    // displaying the first line
     public void ScriptHandler(object data)
     {
         if (data is TextAsset script)
         {
             _currentScript = new Story(script.text);
+            NextLineHandler(null);
         }
         else
         {

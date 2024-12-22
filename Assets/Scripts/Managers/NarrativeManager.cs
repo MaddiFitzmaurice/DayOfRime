@@ -7,13 +7,16 @@ public class NarrativeManager : MonoBehaviour
     {
         // Event Init
         EventManager.Initialise(EventType.NARRATIVE_SEND_SCRIPT);
+
+        // Exposed Data Check
+        if (_script == null)
+        {
+            Debug.LogError("Field not set");
+        }
     }
 
     private void Start()
-    {
-        if (_script != null)
-        {
-            EventManager.Trigger(EventType.NARRATIVE_SEND_SCRIPT, _script);
-        }
+    { 
+        EventManager.Trigger(EventType.NARRATIVE_SEND_SCRIPT, _script); 
     }
 }

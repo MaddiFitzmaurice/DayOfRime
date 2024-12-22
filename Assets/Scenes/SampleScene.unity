@@ -588,6 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2108856395}
   - component: {fileID: 2108856396}
+  - component: {fileID: 2108856397}
   m_Layer: 0
   m_Name: Narrative
   m_TagString: Untagged
@@ -620,6 +621,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f10cdc7f77f9a7f45922881cca7fa3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _script: {fileID: 4900000, guid: d5a5d5161a6e3ff4ab71bbb4b4ff16b6, type: 3}
+--- !u!114 &2108856397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108856394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a345b68bcd353734ca6589c5fd6c5162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
