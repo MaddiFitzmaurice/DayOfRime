@@ -4,18 +4,23 @@
     align-content: center;
     align-items: stretch;
     justify-content: center;
-    flex-shrink: 0;
-    flex-grow: 1;
     margin-top: 2%;
     margin-right: 2%;
     margin-bottom: 2%;
     margin-left: 2%;
+    flex-grow: 1;
+}
+
+.ui-style {
+    background-color: rgb(100, 37, 31);
+    border-color: rgb(53, 30, 7);
+    border-width: 15px;
+    font-size: 40px;
 }
 
 .dialogue-container {
     width: 80%;
     height: auto;
-    background-color: rgb(100, 37, 31);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     visibility: visible;
@@ -28,22 +33,13 @@
     border-right-width: 15px;
     border-bottom-width: 15px;
     border-left-width: 15px;
-    border-left-color: rgb(53, 30, 7);
-    border-right-color: rgb(53, 30, 7);
-    border-top-color: rgb(53, 30, 7);
-    border-bottom-color: rgb(53, 30, 7);
     max-width: 80%;
     flex-shrink: 0;
     flex-grow: 1;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
     flex-wrap: wrap;
 }
 
 .dialogue {
-    font-size: 40px;
     flex-wrap: wrap;
     align-self: auto;
     align-content: auto;
@@ -61,21 +57,9 @@
 }
 
 .button {
-    width: 200px;
+    width: 400px;
     height: 100px;
-    background-color: rgb(100, 37, 31);
-    border-left-color: rgb(53, 30, 7);
-    border-right-color: rgb(53, 30, 7);
-    border-top-color: rgb(53, 30, 7);
-    border-bottom-color: rgb(53, 30, 7);
-    border-top-width: 5px;
-    border-right-width: 5px;
-    border-bottom-width: 5px;
-    border-left-width: 5px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-radius: 15px;
 }
 
 .button-container {
@@ -83,27 +67,14 @@
     height: 75%;
     max-height: 75%;
     flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
     align-self: stretch;
     align-content: center;
     flex-direction: row;
+    align-items: center;
 }
 
-.button {
-    width: 100px;
-    height: 50px;
+.ui-style {
     background-color: rgb(100, 37, 31);
-    border-left-color: rgb(53, 30, 7);
-    border-right-color: rgb(53, 30, 7);
-    border-top-color: rgb(53, 30, 7);
-    border-bottom-color: rgb(53, 30, 7);
-    border-top-width: 5px;
-    border-right-width: 5px;
-    border-bottom-width: 5px;
-    border-left-width: 5px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-color: rgb(53, 30, 7);
 }

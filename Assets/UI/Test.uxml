@@ -2,10 +2,10 @@
     <Style src="project://database/Assets/UI/Test.uss?fileID=7433441132597879392&amp;guid=d7a488dbe74d8994180de213681b44ca&amp;type=3#Test" />
     <ui:VisualElement name="GameUIContainer" class="game-ui-container">
         <ui:VisualElement name="ButtonBox" class="game-space button-container">
-            <ui:Button text="Button" name="Button" class="button" />
-            <ui:Button text="Button" name="Button" class="button" />
+            <ui:Button text="Good" name="Button" class="button ui-style" />
+            <ui:Button text="Bad" name="Button" class="button ui-style" />
         </ui:VisualElement>
-        <ui:VisualElement name="DialogueBox" class="dialogue-container">
+        <ui:VisualElement name="DialogueBox" class="dialogue-container ui-style">
             <ui:Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." name="Dialogue" enabled="true" class="dialogue" />
         </ui:VisualElement>
     </ui:VisualElement>
