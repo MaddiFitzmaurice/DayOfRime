@@ -5,24 +5,26 @@ using Ink.Runtime;
 public class InkManager : MonoBehaviour
 {
     private Story _currentScript;
-    private bool _questionsToShow = false;
+    private bool _choicesToShow = false;
     private string _inkLine;
 
     private void Awake()
     {
         // Event Init
         EventManager.Initialise(EventType.INK_LINES);
-        EventManager.Initialise(EventType.INK_QUESTIONS);
+        EventManager.Initialise(EventType.INK_CHOICES);
     }
 
     private void OnEnable()
     {
         EventManager.Subscribe(EventType.NARRATIVE_SEND_SCRIPT, ScriptHandler);
+        EventManager.Subscribe(EventType.GAMEUI_BUTTON_CLICKED, ChoiceSelectedHandler);
     }
 
     private void OnDisable()
     {
         EventManager.Unsubscribe(EventType.NARRATIVE_SEND_SCRIPT, ScriptHandler);
+        EventManager.Unsubscribe(EventType.GAMEUI_BUTTON_CLICKED, ChoiceSelectedHandler);
     }
 
     // Assigning the Story with a new TextAsset and
@@ -44,24 +46,24 @@ public class InkManager : MonoBehaviour
     public void NextLineHandler(object data)
     {
         // If there are lines to parse and no questions
-        if (_currentScript.canContinue && !_questionsToShow)
+        if (_currentScript.canContinue && !_choicesToShow)
         {
             _inkLine = _currentScript.Continue();
 
-            // If no questions are to be displayed, handle tags and send next text line
+            // If no choices to display, handle tags and send next text line
             if (_currentScript.currentChoices.Count != 0)
             {
-                _questionsToShow = true;
+                _choicesToShow = true;
             }
             
             HandleTags(_currentScript.currentTags);
             EventManager.Trigger(EventType.INK_LINES, _inkLine);
         }
         // Display questions and don't continue into the Ink file
-        else if (_questionsToShow)
+        else if (_choicesToShow)
         {
-            EventManager.Trigger(EventType.INK_QUESTIONS, _currentScript.currentChoices);
-            _questionsToShow = false;
+            EventManager.Trigger(EventType.INK_CHOICES, _currentScript.currentChoices);
+            _choicesToShow = false;
         }
         // If no more lines to parse and no questions, signal end of script
         else
@@ -71,7 +73,7 @@ public class InkManager : MonoBehaviour
     }
 
     // Receive an int from the choice button that has been pressed
-    public void QuestionSelectedHandler(object data)
+    public void ChoiceSelectedHandler(object data)
     {
         if (data is int selectedIndex)
         {
