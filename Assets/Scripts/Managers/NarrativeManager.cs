@@ -11,7 +11,7 @@ public class NarrativeManager : MonoBehaviour
         // Exposed Data Check
         if (_script == null)
         {
-            Debug.LogError("Field not set");
+            DebugUtils.InspectorFieldError();
         }
     }
 

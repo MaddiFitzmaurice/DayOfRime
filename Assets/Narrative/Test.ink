@@ -13,9 +13,9 @@ VAR state = 0
 Hello there.
 
 Choice 1: What do I choose?
-    * good
+    * good choice
         ~ AlterState(1)
-    * bad
+    * bad choice
         ~ AlterState(-1)
     
 - -> choice2

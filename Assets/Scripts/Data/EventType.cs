@@ -19,5 +19,6 @@ public enum EventType
 
     #region GAMEUI EVENTS
     GAMEUI_BUTTON_CLICKED,
+    GAMEUI_NEXT_LINE_CLICKED,
     #endregion
 };

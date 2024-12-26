@@ -78,3 +78,9 @@
     background-color: rgb(100, 37, 31);
     border-color: rgb(53, 30, 7);
 }
+
+.next-icon {
+    --unity-image: url("../Art/UI/caret-down-solid.png");
+    height: 20%;
+    width: 20%;
+}

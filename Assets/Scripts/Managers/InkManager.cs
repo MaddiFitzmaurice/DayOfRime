@@ -5,7 +5,6 @@ using Ink.Runtime;
 public class InkManager : MonoBehaviour
 {
     private Story _currentScript;
-    private bool _choicesToShow = false;
     private string _inkLine;
 
     private void Awake()
@@ -19,12 +18,14 @@ public class InkManager : MonoBehaviour
     {
         EventManager.Subscribe(EventType.NARRATIVE_SEND_SCRIPT, ScriptHandler);
         EventManager.Subscribe(EventType.GAMEUI_BUTTON_CLICKED, ChoiceSelectedHandler);
+        EventManager.Subscribe(EventType.GAMEUI_NEXT_LINE_CLICKED, NextLineHandler);
     }
 
     private void OnDisable()
     {
         EventManager.Unsubscribe(EventType.NARRATIVE_SEND_SCRIPT, ScriptHandler);
         EventManager.Unsubscribe(EventType.GAMEUI_BUTTON_CLICKED, ChoiceSelectedHandler);
+        EventManager.Unsubscribe(EventType.GAMEUI_NEXT_LINE_CLICKED, NextLineHandler);
     }
 
     // Assigning the Story with a new TextAsset and
@@ -46,24 +47,18 @@ public class InkManager : MonoBehaviour
     public void NextLineHandler(object data)
     {
         // If there are lines to parse and no questions
-        if (_currentScript.canContinue && !_choicesToShow)
+        if (_currentScript.canContinue)
         {
             _inkLine = _currentScript.Continue();
 
             // If no choices to display, handle tags and send next text line
             if (_currentScript.currentChoices.Count != 0)
             {
-                _choicesToShow = true;
+                EventManager.Trigger(EventType.INK_CHOICES, _currentScript.currentChoices);
             }
             
             HandleTags(_currentScript.currentTags);
             EventManager.Trigger(EventType.INK_LINES, _inkLine);
-        }
-        // Display questions and don't continue into the Ink file
-        else if (_choicesToShow)
-        {
-            EventManager.Trigger(EventType.INK_CHOICES, _currentScript.currentChoices);
-            _choicesToShow = false;
         }
         // If no more lines to parse and no questions, signal end of script
         else
@@ -84,7 +79,7 @@ public class InkManager : MonoBehaviour
         }
         else 
         {
-            Debug.LogError("QuestionSelectedHandler has not received an int!");
+            DebugUtils.HandlerError();
         }
     }
 
