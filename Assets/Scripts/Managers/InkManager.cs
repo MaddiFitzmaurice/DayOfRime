@@ -20,7 +20,6 @@ public class InkManager : MonoBehaviour
         EventManager.Subscribe(EventType.NARRATIVE_SEND_SCRIPT, ScriptHandler);
         EventManager.Subscribe(EventType.GAMEUI_BUTTON_CLICKED, ChoiceSelectedHandler);
         EventManager.Subscribe(EventType.GAMEUI_NEXT_LINE_CLICKED, NextLineHandler);
-        _currentScript.ObserveVariable("state", InkVariableHandler);
     }
 
     private void OnDisable()
@@ -34,6 +33,7 @@ public class InkManager : MonoBehaviour
     #region EVENT HANDLERS
     private void InkVariableHandler(string variableName, object newValue)
     {
+        Debug.Log(_currentScript.variablesState["state"]);
         EventManager.Trigger(EventType.INK_STATE_UPDATE, _currentScript.variablesState["state"]);
     }
 
@@ -44,6 +44,7 @@ public class InkManager : MonoBehaviour
         if (data is TextAsset script)
         {
             _currentScript = new Story(script.text);
+            _currentScript.ObserveVariable("state", InkVariableHandler);
             NextLineHandler(null);
         }
         else
@@ -80,6 +81,7 @@ public class InkManager : MonoBehaviour
         else
         {
            // End of script stuff here
+           EventManager.Trigger(EventType.INK_SCRIPT_FIN, null);
         }
     }
 

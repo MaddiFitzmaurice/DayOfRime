@@ -36,6 +36,7 @@ public class GameUI : MonoBehaviour
     {
         EventManager.Subscribe(EventType.INK_LINES, LinesContainerHandler);
         EventManager.Subscribe(EventType.INK_CHOICES, ChoicesContainerHandler);
+        EventManager.Subscribe(EventType.INK_SCRIPT_FIN, ScriptFinHandler);
         
         _nextIcon.RegisterCallback<ClickEvent>(OnNextIconClicked);
 
@@ -49,6 +50,7 @@ public class GameUI : MonoBehaviour
     {
         EventManager.Unsubscribe(EventType.INK_LINES, LinesContainerHandler);
         EventManager.Unsubscribe(EventType.INK_CHOICES, ChoicesContainerHandler);
+        EventManager.Unsubscribe(EventType.INK_SCRIPT_FIN, ScriptFinHandler);
 
         _nextIcon.UnregisterCallback<ClickEvent>(OnNextIconClicked);
 
@@ -147,6 +149,13 @@ public class GameUI : MonoBehaviour
         {
             DebugUtils.HandlerError();
         }
+    }
+
+    private void ScriptFinHandler(object data)
+    {
+        ShowChoiceButtons(false);
+        ShowNextIcon(false);
+        _dialogueText.text = "Demo Finished";
     }
     #endregion
 }

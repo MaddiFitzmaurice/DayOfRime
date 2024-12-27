@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 656e383540f68a04087a595942383194
+guid: 6cd8a0dd05584f0409a2699f4e61776b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3798098067551834562
-    second: wj2025-window-4_0
+      213: 1911091463967649437
+    second: wj2025-window-2_0
   - first:
-      213: 2420031009756483431
-    second: wj2025-window-4_1
+      213: -641663284788413994
+    second: wj2025-window-2_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 108
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wj2025-window-4_0
+      name: wj2025-window-2_0
       rect:
         serializedVersion: 2
         x: 341
@@ -144,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c1568ab11e85b430800000000000000
-      internalID: 3798098067551834562
+      spriteID: d9ea213af8f858a10800000000000000
+      internalID: 1911091463967649437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wj2025-window-4_1
+      name: wj2025-window-2_1
       rect:
         serializedVersion: 2
         x: 1769
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 76f07f9a16da59120800000000000000
-      internalID: 2420031009756483431
+      spriteID: 6d9b6c464aa5817f0800000000000000
+      internalID: -641663284788413994
       vertices: []
       indices: 
       edges: []
@@ -185,7 +185,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wj2025-window-2_0: 1911091463967649437
+      wj2025-window-2_1: -641663284788413994
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

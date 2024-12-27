@@ -62,6 +62,17 @@
     border-radius: 15px;
 }
 
+.button:hover {
+    background-color: rgb(131, 73, 58);
+    border-color: rgb(53, 30, 7);
+    scale: 1.05;
+    border-left-color: rgb(166, 133, 99);
+    border-right-color: rgb(166, 133, 99);
+    border-top-color: rgb(166, 133, 99);
+    border-bottom-color: rgb(166, 133, 99);
+    color: rgb(166, 133, 99);
+}
+
 .button-container {
     flex-grow: 1;
     height: 50%;

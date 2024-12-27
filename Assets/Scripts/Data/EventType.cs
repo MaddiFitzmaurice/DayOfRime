@@ -11,6 +11,8 @@ public enum EventType
     #region INK EVENTS
     INK_LINES,                  // Sending lines such as dialogue or prose
     INK_CHOICES,               // Sending questions for the player to choose
+    INK_STATE_UPDATE,
+    INK_SCRIPT_FIN,
     #endregion
 
     #region NARRATIVE EVENTS
