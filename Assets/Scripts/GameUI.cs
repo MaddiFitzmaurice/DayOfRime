@@ -12,6 +12,7 @@ public class GameUI : MonoBehaviour
     private Label _dialogueText;
     private List<Button> _choiceButtons;
     private Image _nextIcon;
+    private const string _displayClass = "display";
     #endregion
 
     private void Awake()
@@ -57,6 +58,39 @@ public class GameUI : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        ShowChoiceButtons(false);
+    }
+
+    private void ShowChoiceButtons(bool show)
+    {
+        foreach (Button button in _choiceButtons)
+        {
+            if (show)
+            {
+                button.RemoveFromClassList(_displayClass);
+            }
+            else
+            {
+                button.AddToClassList(_displayClass);
+            }
+        }
+    }
+
+    private void ShowNextIcon(bool show)
+    {
+        if (show)
+        {
+            _nextIcon.RemoveFromClassList(_displayClass);
+        }
+        else
+        {
+            _nextIcon.AddToClassList(_displayClass);
+        }
+    }
+
+    #region EVENT HANDLERS
     // Send index of button that was clicked to correspond to choice index for Ink
     private void OnButtonClicked(ClickEvent e, int buttonIndex)
     {
@@ -96,6 +130,13 @@ public class GameUI : MonoBehaviour
                     _choiceButtons[i].text = choice.text;
                     i++;
                 }
+                ShowChoiceButtons(true);
+                ShowNextIcon(false);
+            }
+            else if (choices.Count == 0)
+            {
+                ShowChoiceButtons(false);
+                ShowNextIcon(true);
             }
             else 
             {
@@ -107,4 +148,5 @@ public class GameUI : MonoBehaviour
             DebugUtils.HandlerError();
         }
     }
+    #endregion
 }

@@ -6,6 +6,7 @@ public class InkManager : MonoBehaviour
 {
     private Story _currentScript;
     private string _inkLine;
+    private bool _hasChoices = false;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class InkManager : MonoBehaviour
         EventManager.Subscribe(EventType.NARRATIVE_SEND_SCRIPT, ScriptHandler);
         EventManager.Subscribe(EventType.GAMEUI_BUTTON_CLICKED, ChoiceSelectedHandler);
         EventManager.Subscribe(EventType.GAMEUI_NEXT_LINE_CLICKED, NextLineHandler);
+        _currentScript.ObserveVariable("state", InkVariableHandler);
     }
 
     private void OnDisable()
@@ -26,6 +28,13 @@ public class InkManager : MonoBehaviour
         EventManager.Unsubscribe(EventType.NARRATIVE_SEND_SCRIPT, ScriptHandler);
         EventManager.Unsubscribe(EventType.GAMEUI_BUTTON_CLICKED, ChoiceSelectedHandler);
         EventManager.Unsubscribe(EventType.GAMEUI_NEXT_LINE_CLICKED, NextLineHandler);
+        _currentScript.RemoveVariableObserver(InkVariableHandler, "state");
+    }
+
+    #region EVENT HANDLERS
+    private void InkVariableHandler(string variableName, object newValue)
+    {
+        EventManager.Trigger(EventType.INK_STATE_UPDATE, _currentScript.variablesState["state"]);
     }
 
     // Assigning the Story with a new TextAsset and
@@ -55,6 +64,13 @@ public class InkManager : MonoBehaviour
             if (_currentScript.currentChoices.Count != 0)
             {
                 EventManager.Trigger(EventType.INK_CHOICES, _currentScript.currentChoices);
+                _hasChoices = true;
+            }
+            // If choices have been made
+            else if (_hasChoices && _currentScript.currentChoices.Count == 0)
+            {
+                _hasChoices = false;
+                EventManager.Trigger(EventType.INK_CHOICES, _currentScript.currentChoices);
             }
             
             HandleTags(_currentScript.currentTags);
@@ -63,7 +79,7 @@ public class InkManager : MonoBehaviour
         // If no more lines to parse and no questions, signal end of script
         else
         {
-           
+           // End of script stuff here
         }
     }
 
@@ -94,4 +110,5 @@ public class InkManager : MonoBehaviour
             }
         }
     }
+    #endregion
 }
