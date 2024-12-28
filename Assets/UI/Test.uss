@@ -89,11 +89,15 @@
     --unity-image: url("project://database/Assets/Art/UI/caret-down-solid.png?fileID=-5420981813264426003&guid=cae04cfd6096b8f48943083daa73d178&type=3#caret-down-solid_0");
     height: 12%;
     width: 5%;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
 }
 
 .next-icon:hover {
     translate: 0 5px;
     transition: translate;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
     --unity-image-tint-color: white;
 }
 
