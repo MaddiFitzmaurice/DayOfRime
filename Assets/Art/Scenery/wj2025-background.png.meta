@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wj2025-background_0: 815184700184785964
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
