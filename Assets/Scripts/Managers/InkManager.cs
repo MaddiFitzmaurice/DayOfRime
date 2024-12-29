@@ -4,9 +4,16 @@ using Ink.Runtime;
 
 public class InkManager : MonoBehaviour
 {
+    #region INTERNAL DATA
     private Story _currentScript;
     private string _inkLine;
     private bool _hasChoices = false;
+
+    // Ink Script Data
+    private const string Action = "a:";
+    private const string Character = "c:";
+    private const string Portrait = "p:";
+    #endregion
 
     private void Awake()
     {
@@ -108,7 +115,49 @@ public class InkManager : MonoBehaviour
         {
             foreach (string tag in currentTags)
             {
-                
+                // If tag is an action
+                if (tag.Contains(Action))
+                {
+                    if (tag.Contains("enter"))
+                    {
+                        // _characterState.Character = tag.Remove(0, 8);
+                        // _characterState.Toggle = true;
+                        //EventManager.EventTrigger(EventType.INK_TOGGLE_CHARACTER, _characterState);
+                    }
+                    else if (tag.Contains("exit"))
+                    {
+                        // _characterState.Character = tag.Remove(0, 7);
+                        // _characterState.Toggle = false;
+                        // EventManager.EventTrigger(EventType.INK_TOGGLE_CHARACTER, _characterState);
+                    }
+                    else if (tag.Contains("desc"))
+                    {
+                        // _currentSpeaker.Speaker = "";
+                    }
+                }
+                // If tag is a character
+                else if (tag.Contains(Character))
+                {
+                    // if (tag.Contains("grim") || tag.Contains("gravedigger"))
+                    // {
+                    //     // _currentSpeaker.Speaker = tag.Remove(0, 2);
+                    // }
+                    // else if (tag.Contains("nina") || tag.Contains("edward") || tag.Contains("diane")
+                    //     || tag.Contains("maureen") || tag.Contains("kenneth"))
+                    // {
+                    //     // _currentSpeaker.Speaker = "soul";
+                    // }
+                    // else 
+                    // {
+                    //     // _currentSpeaker.Speaker = "";
+                    // }
+                }
+                // If tag is a portrait
+                else if (tag.Contains(Portrait))
+                {
+                    // Remove p:
+                    // _currentSpeaker.Portrait = tag.Remove(0, 2);
+                }
             }
         }
     }

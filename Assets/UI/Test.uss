@@ -37,6 +37,36 @@
     flex-shrink: 0;
     flex-grow: 1;
     flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.dialogue-text-container {
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 70%;
+}
+
+.portrait {
+    width: 20%;
+    height: 90%;
+    max-width: 20%;
+    max-height: 90%;
+    flex-shrink: 0;
+    flex-grow: 1;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    background-color: rgb(0, 0, 0);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 .dialogue {
@@ -60,6 +90,14 @@
     width: 400px;
     height: 100px;
     border-radius: 15px;
+}
+
+.dialogue-text-container {
+}
+
+.portrait {
+    width: 30%;
+    height: 100%;
 }
 
 .button:hover {

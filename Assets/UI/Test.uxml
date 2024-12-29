@@ -6,8 +6,11 @@
             <ui:Button text="Bad" name="BadButton" class="button ui-style" />
         </ui:VisualElement>
         <ui:VisualElement name="DialogueBox" class="dialogue-container ui-style">
-            <ui:Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." name="Dialogue" enabled="true" class="dialogue" />
-            <ui:Image name="NextIcon" class="next-icon" />
+            <ui:VisualElement name="Portrait" class="portrait" />
+            <ui:VisualElement name="DialogueTextContainer" class="dialogue-text-container" style="flex-grow: 1;">
+                <ui:Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." name="Dialogue" enabled="true" class="dialogue" />
+                <ui:Image name="NextIcon" class="next-icon" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
