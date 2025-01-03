@@ -15,7 +15,7 @@
     background-color: rgb(100, 37, 31);
     border-color: rgb(53, 30, 7);
     border-width: 15px;
-    font-size: 40px;
+    font-size: 50px;
 }
 
 .dialogue-container {
@@ -24,10 +24,10 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     visibility: visible;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: stretch;
     align-self: center;
-    align-content: center;
+    align-content: stretch;
     bottom: auto;
     border-top-width: 15px;
     border-right-width: 15px;
@@ -38,17 +38,6 @@
     flex-grow: 1;
     flex-wrap: nowrap;
     flex-direction: row;
-}
-
-.dialogue-text-container {
-    flex-grow: 1;
-    flex-shrink: 0;
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100%;
-    width: 70%;
 }
 
 .portrait {
@@ -67,32 +56,41 @@
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: flex-start;
 }
 
-.dialogue {
+.text-container {
     flex-wrap: wrap;
     align-self: auto;
     align-content: auto;
-    align-items: auto;
+    align-items: stretch;
     justify-content: center;
     -unity-text-align: middle-left;
     width: auto;
-    height: 50%;
+    height: auto;
     text-overflow: clip;
     white-space: pre-wrap;
-    margin-top: 15px;
-    margin-right: 15px;
-    margin-bottom: 15px;
-    margin-left: 15px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    min-height: 100%;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    flex-shrink: 0;
+    flex-grow: 1;
 }
 
 .button {
     width: 400px;
     height: 100px;
     border-radius: 15px;
-}
-
-.dialogue-text-container {
+    align-content: auto;
 }
 
 .portrait {
@@ -123,12 +121,41 @@
     align-items: center;
 }
 
+.next-icon-container {
+    min-height: auto;
+    min-width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    height: auto;
+    max-height: 20%;
+}
+
 .next-icon {
     --unity-image: url("project://database/Assets/Art/UI/caret-down-solid.png?fileID=-5420981813264426003&guid=cae04cfd6096b8f48943083daa73d178&type=3#caret-down-solid_0");
-    height: 12%;
+    height: 50%;
     width: 5%;
     transition-duration: 0.2s;
     transition-timing-function: ease-in-out;
+    min-width: auto;
+    min-height: auto;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialogue-text-container {
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 70%;
 }
 
 .next-icon:hover {
@@ -142,4 +169,39 @@
 .display {
     display: none;
     visibility: visible;
+}
+
+.text-components {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-self: auto;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    -unity-text-align: upper-left;
+}
+
+.text-color-red {
+    color: red;
+}
+
+.text-small {
+    font-size: 35px;
+    align-items: stretch;
+    justify-content: flex-start;
+    align-self: auto;
+    align-content: auto;
+    -unity-text-align: upper-left;
+}
+
+.text-shake {
+    transition-property: scale;
+    transition-duration: 2s;
+    transition-timing-function: ease-in-out-sine;
+}
+
+.text-shake-play {
+    scale: 1.5;
 }

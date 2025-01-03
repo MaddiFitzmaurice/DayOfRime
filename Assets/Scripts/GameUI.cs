@@ -1,7 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ink.Runtime;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Text;
+using System.Text.RegularExpressions;
 
 [RequireComponent(typeof(UIDocument))]
 public class GameUI : MonoBehaviour
@@ -9,7 +13,7 @@ public class GameUI : MonoBehaviour
     #region INTERNAL DATA
     // VISUAL ELEMENTS
     private VisualElement _ui;  //Root Element
-    private Label _dialogueText;
+    private VisualElement _textComponents; // Container that contains all text
     private List<Button> _choiceButtons;
     private Image _nextIcon;
     private const string _displayClass = "display";
@@ -22,7 +26,7 @@ public class GameUI : MonoBehaviour
 
         // Get Components
         _ui = GetComponent<UIDocument>().rootVisualElement;
-        _dialogueText = _ui.Q<Label>("Dialogue");
+        _textComponents = _ui.Q<VisualElement>("TextComponents");
         _nextIcon = _ui.Q<Image>("NextIcon");
 
         _choiceButtons = new List<Button>
@@ -92,6 +96,71 @@ public class GameUI : MonoBehaviour
         }
     }
 
+    private void ParseLine(string line)
+    {   
+        List<string> sublines = Regex.Split(line, Regex.Escape("[")).ToList();
+
+        foreach (string subline in sublines)
+        {
+            if (!subline.Contains("/"))
+            {
+                if (subline.Contains("red]"))
+                {
+                    AddRedColorEffect(subline);
+                }
+                else if (subline.Contains("small]"))
+                {
+                    AddSmallEffect(subline);
+                }
+                else 
+                {
+                    Label text = new Label(subline);
+                    _textComponents.Add(text);
+                }
+            }
+            else 
+            {
+                if (subline[0] == '/')
+                {
+                    int end = 1;
+
+                    foreach (char c in subline)
+                    {
+                        if (c == ']')
+                        {
+                            break;
+                        }
+                        else 
+                        {
+                            end++;
+                        }
+                    }
+
+                    Debug.Log(end);
+                    string trimmedSubline = subline.Remove(0, end);
+                    Label text = new Label(trimmedSubline);
+                    _textComponents.Add(text);
+                }
+            }
+        }
+    }
+
+    private void AddRedColorEffect(string subline)
+    {
+        string trimmedSubline = subline.Replace("red]", "");
+        Label text = new Label(trimmedSubline);
+        text.AddToClassList("text-color-red");
+        _textComponents.Add(text);
+    }
+
+    private void AddSmallEffect(string subline)
+    {
+        string trimmedSubline = subline.Replace("small]", "");
+        Label text = new Label(trimmedSubline);
+        text.AddToClassList("text-small");
+        _textComponents.Add(text);
+    }
+
     #region EVENT HANDLERS
     // Send index of button that was clicked to correspond to choice index for Ink
     private void OnButtonClicked(ClickEvent e, int buttonIndex)
@@ -109,7 +178,8 @@ public class GameUI : MonoBehaviour
     {
         if (data is string line)
         {
-            _dialogueText.text = line;
+            _textComponents.Clear();
+            ParseLine(line);
         }
         else 
         {
@@ -155,7 +225,9 @@ public class GameUI : MonoBehaviour
     {
         ShowChoiceButtons(false);
         ShowNextIcon(false);
-        _dialogueText.text = "Demo Finished";
+        _textComponents.Clear();
+        Label text = new Label("We're done here.");
+        _textComponents.Add(text);
     }
     #endregion
 }

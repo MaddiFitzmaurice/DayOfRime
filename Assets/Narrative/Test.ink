@@ -38,7 +38,7 @@ Choice 1: What do I choose?
 - -> choice2
 
 ==choice2==
-Hello again woah.
+[red]Hello again[/red], I didn't expect to see you here.
 
 Choice 2: What do I choose?
     * good 2
@@ -48,7 +48,7 @@ Choice 2: What do I choose?
 - -> choice3
 
 ==choice3==
-Hi...
+[small]Hi...[/small]
 
 Choice 3: What do I choose?
     * good 3
