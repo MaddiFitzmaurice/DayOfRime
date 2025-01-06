@@ -40,7 +40,7 @@ public class InkManager : MonoBehaviour
     #region EVENT HANDLERS
     private void InkVariableHandler(string variableName, object newValue)
     {
-        Debug.Log(_currentScript.variablesState["state"]);
+        // Debug.Log(_currentScript.variablesState["state"]);
         EventManager.Trigger(EventType.INK_STATE_UPDATE, _currentScript.variablesState["state"]);
     }
 

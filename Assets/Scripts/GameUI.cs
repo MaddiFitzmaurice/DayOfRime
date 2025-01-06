@@ -4,8 +4,6 @@ using System.Linq;
 using Ink.Runtime;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Text;
-using System.Text.RegularExpressions;
 
 [RequireComponent(typeof(UIDocument))]
 public class GameUI : MonoBehaviour
@@ -98,10 +96,11 @@ public class GameUI : MonoBehaviour
 
     private void ParseLine(string line)
     {   
-        List<string> sublines = Regex.Split(line, Regex.Escape("[")).ToList();
+        List<string> sublines = line.Split('[').ToList();
 
         foreach (string subline in sublines)
         {
+            // If not end of effect
             if (!subline.Contains("/"))
             {
                 if (subline.Contains("red]"))
@@ -112,36 +111,47 @@ public class GameUI : MonoBehaviour
                 {
                     AddSmallEffect(subline);
                 }
+                // If no effect
                 else 
                 {
                     Label text = new Label(subline);
-                    _textComponents.Add(text);
+                    AddTextToTextComponents(text);
                 }
             }
+            // If end of effect
             else 
             {
-                if (subline[0] == '/')
+                RemoveEffect(subline);
+            }
+        }
+    }
+
+    private void AddTextToTextComponents(Label text)
+    {
+        _textComponents.Add(text);
+    }
+
+    private void RemoveEffect(string subline)
+    {
+        if (subline[0] == '/')
+        {
+            int end = 1;
+
+            foreach (char c in subline)
+            {
+                if (c == ']')
                 {
-                    int end = 1;
-
-                    foreach (char c in subline)
-                    {
-                        if (c == ']')
-                        {
-                            break;
-                        }
-                        else 
-                        {
-                            end++;
-                        }
-                    }
-
-                    Debug.Log(end);
-                    string trimmedSubline = subline.Remove(0, end);
-                    Label text = new Label(trimmedSubline);
-                    _textComponents.Add(text);
+                    break;
+                }
+                else 
+                {
+                    end++;
                 }
             }
+
+            string trimmedSubline = subline.Remove(0, end);
+            Label text = new Label(trimmedSubline);
+            AddTextToTextComponents(text);
         }
     }
 
@@ -150,7 +160,7 @@ public class GameUI : MonoBehaviour
         string trimmedSubline = subline.Replace("red]", "");
         Label text = new Label(trimmedSubline);
         text.AddToClassList("text-color-red");
-        _textComponents.Add(text);
+        AddTextToTextComponents(text);
     }
 
     private void AddSmallEffect(string subline)
@@ -158,7 +168,7 @@ public class GameUI : MonoBehaviour
         string trimmedSubline = subline.Replace("small]", "");
         Label text = new Label(trimmedSubline);
         text.AddToClassList("text-small");
-        _textComponents.Add(text);
+        AddTextToTextComponents(text);
     }
 
     #region EVENT HANDLERS
