@@ -28,7 +28,7 @@ VAR state = 0
     
 // STORY
 ==choice1==
-Hello there.
+Hello there. Welcome to this game we're playing. Are you ready?
 
 Choice 1: What do I choose?
     * good 1
@@ -38,7 +38,7 @@ Choice 1: What do I choose?
 - -> choice2
 
 ==choice2==
-[red]Hello again[/red], I didn't expect to see you here.
+[red]Hello again,[/red] I didn't expect to see you here...
 
 Choice 2: What do I choose?
     * good 2

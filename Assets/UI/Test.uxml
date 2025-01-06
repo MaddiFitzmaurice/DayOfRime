@@ -6,10 +6,10 @@
             <ui:Button text="Bad" name="BadButton" class="button ui-style" />
         </ui:VisualElement>
         <ui:VisualElement name="DialogueBox" class="dialogue-container ui-style">
-            <ui:VisualElement name="Portrait" class="portrait" />
+            <ui:VisualElement name="Portrait" class="portrait" style="flex-grow: 0;" />
             <ui:VisualElement name="TextContainer" class="text-container">
-                <ui:VisualElement name="TextComponents" class="text-components" style="flex-grow: 1;" />
-                <ui:VisualElement name="NextIconContainer" class="next-icon-container" style="flex-grow: 1; align-items: center; justify-content: center; align-content: center;">
+                <ui:VisualElement name="TextComponents" class="text-components" />
+                <ui:VisualElement name="NextIconContainer" class="next-icon-container">
                     <ui:Image name="NextIcon" class="next-icon" />
                 </ui:VisualElement>
             </ui:VisualElement>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Ink.Runtime;
@@ -96,32 +97,34 @@ public class GameUI : MonoBehaviour
 
     private void ParseLine(string line)
     {   
-        List<string> sublines = line.Split('[').ToList();
+        List<string> subLines = line.Split('[').ToList();
 
-        foreach (string subline in sublines)
+        foreach (string subLine in subLines)
         {
             // If not end of effect
-            if (!subline.Contains("/"))
+            if (!subLine.Contains("/"))
             {
-                if (subline.Contains("red]"))
+                if (subLine.Contains("red]"))
                 {
-                    AddRedColorEffect(subline);
+                    AddRedColorEffect(subLine);
                 }
-                else if (subline.Contains("small]"))
+                else if (subLine.Contains("small]"))
                 {
-                    AddSmallEffect(subline);
+                    AddSmallEffect(subLine);
                 }
                 // If no effect
                 else 
                 {
-                    Label text = new Label(subline);
-                    AddTextToTextComponents(text);
+                    Label textBox = new Label();
+                    textBox.AddToClassList("text");
+                    AddTextToTextComponents(textBox);
+                    StartCoroutine(Typewriter(textBox, subLine));
                 }
             }
             // If end of effect
             else 
             {
-                RemoveEffect(subline);
+                RemoveEffect(subLine);
             }
         }
     }
@@ -131,13 +134,18 @@ public class GameUI : MonoBehaviour
         _textComponents.Add(text);
     }
 
-    private void RemoveEffect(string subline)
+    private void TypingEffect(Label textbox, string subline)
     {
-        if (subline[0] == '/')
+
+    }
+
+    private void RemoveEffect(string subLine)
+    {
+        if (subLine[0] == '/')
         {
             int end = 1;
 
-            foreach (char c in subline)
+            foreach (char c in subLine)
             {
                 if (c == ']')
                 {
@@ -149,27 +157,89 @@ public class GameUI : MonoBehaviour
                 }
             }
 
-            string trimmedSubline = subline.Remove(0, end);
-            Label text = new Label(trimmedSubline);
-            AddTextToTextComponents(text);
+            string trimmedSubLine = subLine.Remove(0, end);
+            
+            Label textBox = new Label();
+            textBox.AddToClassList("text");
+            AddTextToTextComponents(textBox);
+            StartCoroutine(Typewriter(textBox, trimmedSubLine));
         }
     }
 
-    private void AddRedColorEffect(string subline)
+    private void AddRedColorEffect(string subLine)
     {
-        string trimmedSubline = subline.Replace("red]", "");
-        Label text = new Label(trimmedSubline);
-        text.AddToClassList("text-color-red");
-        AddTextToTextComponents(text);
+        string trimmedSubLine = subLine.Replace("red]", "");
+        Label textBox = new Label();
+        textBox.AddToClassList("text");
+        textBox.AddToClassList("text-color-red");
+        AddTextToTextComponents(textBox);
+        StartCoroutine(Typewriter(textBox, trimmedSubLine));
     }
 
-    private void AddSmallEffect(string subline)
+    private void AddSmallEffect(string subLine)
     {
-        string trimmedSubline = subline.Replace("small]", "");
-        Label text = new Label(trimmedSubline);
-        text.AddToClassList("text-small");
-        AddTextToTextComponents(text);
+        string trimmedSubLine = subLine.Replace("small]", "");
+        Label textBox = new Label();
+        textBox.AddToClassList("text");
+        textBox.AddToClassList("text-small");
+        AddTextToTextComponents(textBox);
+        StartCoroutine(Typewriter(textBox, trimmedSubLine));
     }
+
+    private IEnumerator Typewriter(Label textBox, string subLine)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        bool punctuationDelay = false;
+        bool potentialEllipsis = false;
+
+        foreach(char character in subLine)
+        {
+            if (punctuationDelay)
+            {
+                if (character == ' ')
+                {
+                    yield return new WaitForSeconds(0.4f);
+                    punctuationDelay = false;
+                }
+                else if (potentialEllipsis && character == '.')
+                {
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+            else 
+            {
+                if (character == '?' || character == '.' || character == ',' || character == ':' ||
+                     character == ';' || character == '!' || character == '-') 
+                {
+                    punctuationDelay = true;
+
+                    if (character == '.')
+                    {
+                        potentialEllipsis = true;
+                    }
+                    else
+                    {
+                        potentialEllipsis = false;
+                    }
+                }
+                    
+                yield return new WaitForSeconds(1f / 60f);
+                //_simpleDelay;
+            }
+            
+            textBox.text += character;
+        }
+
+        yield return null;
+    }
+
+    // private void Skip()
+    // {
+    //     _typewriterRunning = false;
+    //     StopCoroutine(_typewriterCoroutine);
+    //     _dialogueText.maxVisibleCharacters = _dialogueText.textInfo.characterCount;
+    // }
 
     #region EVENT HANDLERS
     // Send index of button that was clicked to correspond to choice index for Ink
