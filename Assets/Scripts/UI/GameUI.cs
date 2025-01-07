@@ -132,18 +132,11 @@ public class GameUI : MonoBehaviour
         // Clear text boxes from previous line
         _textBoxContainer.Clear();
 
-        // Create sublines based off of text effects
-        // List<string> subLines = line.Split('[').ToList();
-        List<string> subLines = _textEffects.CreateSublines(line);
-
-        foreach (string subLine in subLines)
-        {
-            (Label textBox, string parsedLine) = _textEffects.ParseEffects(_textBoxContainer, subLine);
-
-            ShowNextIcon(false);
-            ShowSkipIcon(true);
-            _textAnims.PlayTextAnim(textBox, parsedLine);
-        }
+        // Hold a list of textBoxes and effect-parsed subLines
+        List<(Label, string)> textEffects = _textEffects.ParseEffects(_textBoxContainer, line);
+        ShowNextIcon(false);
+        ShowSkipIcon(true);
+        _textAnims.PlayTextAnim(textEffects);
     }
 
     private void DisplayChoices(List<Choice> choices)
@@ -202,7 +195,7 @@ public class GameUI : MonoBehaviour
 
     private void OnSkipIconClicked(ClickEvent e)
     {
-        _textAnims.StopTextAnim();
+        _textAnims.CancelTextAnim();
     }
 
     // Display incoming lines

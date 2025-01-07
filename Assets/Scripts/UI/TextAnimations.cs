@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Ink.Parsed;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -22,8 +24,7 @@ public class TextAnimations : MonoBehaviour
 
     #region INTERNAL DATA
     private bool _isAnimPlaying = false;
-    private Label _currentTextBox;
-    private string _currentSubline;
+    private List<(Label, string)> _currentTexts;
     #endregion
 
     private void Start()
@@ -39,33 +40,44 @@ public class TextAnimations : MonoBehaviour
         return _isAnimPlaying;
     }
 
-    public void PlayTextAnim(Label textBox, string subLine)
+    public void PlayTextAnim(List<(Label, string)> texts)
     {
+        _currentTexts = texts;
+
+        if (_isAnimPlaying)
+        {
+            CancelTextAnim();
+        }
+
         if (_anim == TextAnimation.TYPEWRITER)
         {
-            PlayTypewriterAnim(textBox, subLine);
+            StartCoroutine(TypewriterSequence(texts));
         }
     }
 
-    public void StopTextAnim()
+    public void CancelTextAnim()
     {
         StopAllCoroutines();
-        _currentTextBox.text = _currentSubline;
+        AssignCancelledTextAnim();
         _isAnimPlaying = false;
         OnAnimComplete?.Invoke();
     }
 
-    #region TYPEWRITER ANIMATION
-    private void PlayTypewriterAnim(Label textBox, string subLine)
+    private void AssignCancelledTextAnim()
     {
-        if (_isAnimPlaying)
+        foreach ((Label, string) text in _currentTexts)
         {
-            StopTextAnim();
+            text.Item1.text = text.Item2;
         }
-        
-        _currentTextBox = textBox;
-        _currentSubline = subLine;
-        StartCoroutine(Typewriter(textBox, subLine));
+    }
+
+    #region TYPEWRITER ANIMATION
+    private IEnumerator TypewriterSequence(List<(Label, string)> texts)
+    {
+        foreach ((Label, string) text in texts)
+        {
+            yield return StartCoroutine(Typewriter(text.Item1, text.Item2));
+        }
     }
 
     private IEnumerator Typewriter(Label textBox, string subLine)
