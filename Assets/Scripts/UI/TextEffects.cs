@@ -19,36 +19,40 @@ public class TextEffects
 
         foreach (string subLine in subLines)
         {
-            // If not end of effect
-            if (!subLine.Contains("/"))
+            // Discard empty sublines
+            if (subLine.Length != 0)
             {
-                // If Red Effect
-                if (subLine.Contains("red]"))
+                // If not end of effect
+                if (!subLine.Contains("/"))
                 {
-                    (textBox, parsedLine) = RedColorTextEffect(subLine);
+                    // If Red Effect
+                    if (subLine.Contains("red]"))
+                    {
+                        (textBox, parsedLine) = RedColorTextEffect(subLine);
+                    }
+                    // If Small Text Effect
+                    else if (subLine.Contains("small]"))
+                    {
+                        (textBox, parsedLine) = SmallTextEffect(subLine);
+                    }
+                    // If no effect
+                    else 
+                    {
+                        (textBox, parsedLine) = (NoTextEffect(), subLine);
+                    }
                 }
-                // If Small Text Effect
-                else if (subLine.Contains("small]"))
-                {
-                    (textBox, parsedLine) = SmallTextEffect(subLine);
-                }
-                // If no effect
+                // Else if end of effect
                 else 
                 {
-                    (textBox, parsedLine) = (NoTextEffect(), subLine);
+                    (textBox, parsedLine) = RemoveTextEffect(subLine);
                 }
-            }
-            // Else if end of effect
-            else 
-            {
-                (textBox, parsedLine) = RemoveTextEffect(subLine);
-            }
 
-            // Add textbox to textbox container
-            container.Add(textBox);
+                // Add textbox to textbox container
+                container.Add(textBox);
 
-            // Add text with effects to list
-            _textsWithEffects.Add((textBox, parsedLine));
+                // Add text with effects to list
+                _textsWithEffects.Add((textBox, parsedLine));
+            }
         }
         
         return _textsWithEffects;

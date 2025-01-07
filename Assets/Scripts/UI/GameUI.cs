@@ -152,7 +152,6 @@ public class GameUI : MonoBehaviour
                 i++;
             }
             _choicesShown = true;
-            ShowChoiceButtons(true);
         }
         else if (choices.Count == 0)
         {
@@ -180,6 +179,7 @@ public class GameUI : MonoBehaviour
         {
             ShowSkipIcon(false);
             ShowNextIcon(false);
+            ShowChoiceButtons(true);
         }
         else 
         {
@@ -190,6 +190,7 @@ public class GameUI : MonoBehaviour
 
     private void OnNextIconClicked(ClickEvent e)
     {
+        ShowNextIcon(false);
         EventManager.Trigger(EventType.GAMEUI_NEXT_LINE_CLICKED, null);
     }
 
