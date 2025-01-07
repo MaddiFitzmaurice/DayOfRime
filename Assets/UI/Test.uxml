@@ -9,8 +9,9 @@
             <ui:VisualElement name="Portrait" class="portrait" style="flex-grow: 0;" />
             <ui:VisualElement name="TextContainer" class="text-container">
                 <ui:VisualElement name="TextComponents" class="text-components" />
-                <ui:VisualElement name="NextIconContainer" class="next-icon-container">
-                    <ui:Image name="NextIcon" class="next-icon" />
+                <ui:VisualElement name="TextIconContainer" class="text-icon-container">
+                    <ui:Image name="NextIcon" class="text-icon next-text-icon" />
+                    <ui:Image name="SkipIcon" class="text-icon skip-text-icon" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

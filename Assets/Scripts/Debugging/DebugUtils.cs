@@ -11,4 +11,9 @@ public static class DebugUtils
     {
         Debug.LogError("Field was not set in inspector");
     }
+
+    public static void NoComponentError()
+    {
+        Debug.LogError("Component was no attached to GameObject");
+    }
 }

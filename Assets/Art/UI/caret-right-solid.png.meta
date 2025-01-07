@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cae04cfd6096b8f48943083daa73d178
+guid: c70f385f8861d9348a9615b504119c47
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5420981813264426003
-    second: caret-down-solid_0
+      213: 7185641796235400370
+    second: caret-right-solid_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: caret-down-solid_0
+      name: caret-right-solid_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 127
-        width: 320
-        height: 195
+        x: 30
+        y: 47
+        width: 98
+        height: 162
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: deb558e23cdc4c4b0800000000000000
-      internalID: -5420981813264426003
+      spriteID: 2b49fcb742788b360800000000000000
+      internalID: 7185641796235400370
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      caret-down-solid_0: -5420981813264426003
+      caret-right-solid_0: 7185641796235400370
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

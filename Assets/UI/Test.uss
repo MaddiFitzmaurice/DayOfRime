@@ -123,7 +123,7 @@
     align-items: center;
 }
 
-.next-icon-container {
+.text-icon-container {
     min-height: auto;
     min-width: 100%;
     justify-content: center;
@@ -137,8 +137,7 @@
     flex-basis: 20%;
 }
 
-.next-icon {
-    --unity-image: url("project://database/Assets/Art/UI/caret-down-solid.png?fileID=-5420981813264426003&guid=cae04cfd6096b8f48943083daa73d178&type=3#caret-down-solid_0");
+.text-icon {
     height: 50%;
     width: 5%;
     transition-duration: 0.2s;
@@ -148,6 +147,27 @@
     align-content: center;
     align-items: center;
     justify-content: center;
+    visibility: visible;
+    display: flex;
+}
+
+.text-icon:hover {
+    translate: 0 5px;
+    transition: translate;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    --unity-image-tint-color: white;
+}
+
+.next-text-icon {
+    --unity-image: url("project://database/Assets/Art/UI/caret-down-solid.png?fileID=-5420981813264426003&guid=cae04cfd6096b8f48943083daa73d178&type=3#caret-down-solid_0");
+    display: flex;
+}
+
+.skip-text-icon {
+    --unity-image: url("project://database/Assets/Art/UI/caret-right-solid.png?fileID=7185641796235400370&guid=c70f385f8861d9348a9615b504119c47&type=3#caret-right-solid_0");
+    flex-basis: 80%;
+    display: flex;
 }
 
 .dialogue-text-container {
@@ -159,14 +179,6 @@
     justify-content: space-around;
     height: 100%;
     width: 70%;
-}
-
-.next-icon:hover {
-    translate: 0 5px;
-    transition: translate;
-    transition-duration: 0.2s;
-    transition-timing-function: ease-in-out;
-    --unity-image-tint-color: white;
 }
 
 .display {
@@ -184,7 +196,7 @@
     flex-wrap: wrap;
     flex-grow: 0;
     -unity-text-align: upper-left;
-    white-space: normal;
+    white-space: pre-wrap;
     text-overflow: clip;
     min-height: auto;
     max-height: none;
