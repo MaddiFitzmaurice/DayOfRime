@@ -32,11 +32,12 @@ public class MainMenuUI : MonoBehaviour
     #region EVENT HANDLERS
     private void PlayButtonHandler(ClickEvent e)
     {
+        EventManager.Trigger(EventType.PLAY_GAME, null);
     }
 
     private void QuitButtonHandler(ClickEvent e)
     {
-
+        EventManager.Trigger(EventType.QUIT_GAME, null);
     }
     #endregion
 }

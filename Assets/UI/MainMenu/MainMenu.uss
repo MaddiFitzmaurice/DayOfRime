@@ -51,3 +51,7 @@
 .title {
     font-size: 150px;
 }
+
+.main-menu-button:hover {
+    scale: 1.05;
+}
