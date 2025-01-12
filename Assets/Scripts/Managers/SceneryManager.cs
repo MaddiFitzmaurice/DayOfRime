@@ -5,30 +5,27 @@ using UnityEngine.UI;
 public class SceneryManager : MonoBehaviour
 {
     #region EXTERNAL DATA
-    [Header("Sprite Renderers")]
-    [SerializeField] private SpriteRenderer _window;
     [Header("Window States")]
-    [SerializeField] private List<SpriteState> _windowStatesList;
+    [SerializeField] private List<SpriteState> _statesList;
     #endregion
 
     #region INTERNAL DATA
-    private Dictionary<NarrativeState, Sprite> _windowStatesDict;
+    private Dictionary<NarrativeState, Sprite> _statesDict;
+    private SpriteRenderer _backgroundRenderer;
     #endregion
 
     private void Awake()
     {
-        if (_window == null)
+        if (_statesList.Count == 0)
         {
             DebugUtils.InspectorFieldError();
         }
 
-        if (_windowStatesList.Count == 0)
-        {
-            DebugUtils.InspectorFieldError();
-        }
-
-        _windowStatesDict = new Dictionary<NarrativeState, Sprite>();
+        _statesDict = new Dictionary<NarrativeState, Sprite>();
         ConvertToDict();
+
+        // Component
+        _backgroundRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -43,15 +40,15 @@ public class SceneryManager : MonoBehaviour
 
     private void ConvertToDict()
     {
-        foreach (SpriteState spriteState in _windowStatesList)
+        foreach (SpriteState spriteState in _statesList)
         {
-            _windowStatesDict.Add(spriteState.NarrativeState, spriteState.Sprite);
+            _statesDict.Add(spriteState.NarrativeState, spriteState.Sprite);
         }
     }
 
     private void UpdateScenery(int state)
     {
-        _window.sprite = _windowStatesDict[(NarrativeState)state];
+        _backgroundRenderer.sprite = _statesDict[(NarrativeState)state];
     }
 
     #region EVENT HANDLERS

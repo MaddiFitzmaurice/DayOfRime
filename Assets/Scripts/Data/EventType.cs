@@ -24,4 +24,8 @@ public enum EventType
     GAMEUI_NEXT_LINE_CLICKED,
     GAMEUI_SKIP_LINE_CLICKED,
     #endregion
+
+    #region MAIN MENU
+    MAINMENU_OUTRO_START,
+    #endregion
 };

@@ -5,12 +5,12 @@
             <ui:Button text="Good" name="GoodButton" class="button ui-style" />
             <ui:Button text="Bad" name="BadButton" class="button ui-style" />
         </ui:VisualElement>
-        <ui:VisualElement name="DialogueBox" class="dialogue-container ui-style" style="flex-basis: 20%; flex-grow: 0; flex-shrink: 1; justify-content: flex-start; align-items: stretch;">
+        <ui:VisualElement name="DialogueBox" class="dialogue-container ui-style">
             <ui:VisualElement name="TextContainer" class="text-container">
                 <ui:VisualElement name="TextComponents" class="text-components" />
                 <ui:VisualElement name="TextIconContainer" class="text-icon-container">
                     <ui:Image name="NextIcon" class="text-icon next-text-icon" />
-                    <ui:Image name="SkipIcon" class="text-icon skip-text-icon" />
+                    <ui:Image name="SkipIcon" class="text-icon skip-text-icon display" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

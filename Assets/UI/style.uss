@@ -1,0 +1,32 @@
+.ui-style {
+    background-color: rgb(100, 37, 31);
+    border-color: rgb(53, 30, 7);
+    border-width: 15px;
+    font-size: 50px;
+}
+
+.button {
+    width: 400px;
+    height: 100px;
+    border-radius: 15px;
+    align-content: auto;
+    flex-basis: 40%;
+}
+
+.button:hover {
+    background-color: rgb(131, 73, 58);
+    border-color: rgb(53, 30, 7);
+    scale: 1.05;
+    border-left-color: rgb(166, 133, 99);
+    border-right-color: rgb(166, 133, 99);
+    border-top-color: rgb(166, 133, 99);
+    border-bottom-color: rgb(166, 133, 99);
+    color: rgb(166, 133, 99);
+}
+
+.ui-style {
+    background-color: rgb(100, 37, 31);
+    border-color: rgb(53, 30, 7);
+    border-width: 15px;
+    font-size: 50px;
+}

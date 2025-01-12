@@ -1,12 +1,13 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=c37ef11b57d91cf4e8f18889140da8b5&amp;type=3#MainMenu" />
+    <Style src="project://database/Assets/UI/style.uss?fileID=7433441132597879392&amp;guid=a46624c9de59df24394dfbf355d27917&amp;type=3#style" />
     <engine:VisualElement name="MainMenuUIContainer" class="main-menu-UI-container" style="flex-grow: 1;">
         <engine:VisualElement name="TitleContainer" class="title-container">
             <engine:Label text="Day of Rime" name="Title" class="title" />
         </engine:VisualElement>
         <engine:VisualElement name="ButtonsContainer" class="buttons-container" style="flex-grow: 1;">
-            <engine:Button text="PLAY" name="PlayButton" class="main-menu-button" />
-            <engine:Button text="QUIT" name="QuitButton" class="main-menu-button" />
+            <engine:Button text="PLAY" name="PlayButton" class="main-menu-button ui-style button" />
+            <engine:Button text="QUIT" name="QuitButton" class="main-menu-button ui-style button" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

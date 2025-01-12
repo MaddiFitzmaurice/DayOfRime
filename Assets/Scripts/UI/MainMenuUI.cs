@@ -32,7 +32,7 @@ public class MainMenuUI : MonoBehaviour
     #region EVENT HANDLERS
     private void PlayButtonHandler(ClickEvent e)
     {
-        EventManager.Trigger(EventType.PLAY_GAME, null);
+        EventManager.Trigger(EventType.MAINMENU_OUTRO_START, null);
     }
 
     private void QuitButtonHandler(ClickEvent e)

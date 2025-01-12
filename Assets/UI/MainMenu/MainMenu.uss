@@ -38,6 +38,7 @@
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
     -unity-text-align: middle-center;
+    -unity-font-definition: url("project://database/Assets/Typefaces/Garmontio%20-%20body/garamontio.ttf?fileID=12800000&guid=6c7b70816fbc6c7498ed69420193c6a6&type=3#garamontio");
 }
 
 .title-container {
@@ -49,7 +50,11 @@
 }
 
 .title {
-    font-size: 150px;
+    font-size: 200px;
+    -unity-font-style: normal;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/Typefaces/Fliege%20-%20Titles/OTF/FliegeMono-Bold.otf?fileID=12800000&guid=7b6cda4064e860a42a7db62f3d276dc9&type=3#FliegeMono-Bold");
+    -unity-text-align: middle-center;
 }
 
 .main-menu-button:hover {
