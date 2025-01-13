@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class MainMenuUI : MonoBehaviour
 {
     private VisualElement _ui;  //Root Element
+    private UIDocument _uiDoc;
     private Button _playButton;
     private Button _quitButton;
 
@@ -12,7 +13,8 @@ public class MainMenuUI : MonoBehaviour
     private void Awake()
     {
         // Get UI Components
-        _ui = GetComponent<UIDocument>().rootVisualElement;
+        _uiDoc = GetComponent<UIDocument>();
+        _ui = _uiDoc.rootVisualElement;
         _playButton = _ui.Q<Button>("PlayButton");
         _quitButton = _ui.Q<Button>("QuitButton");
     }
@@ -29,14 +31,21 @@ public class MainMenuUI : MonoBehaviour
         _quitButton.UnregisterCallback<ClickEvent>(QuitButtonHandler);
     }
 
+    private void Start()
+    {
+        _uiDoc.gameObject.SetActive(true);
+    }
+
     #region EVENT HANDLERS
     private void PlayButtonHandler(ClickEvent e)
     {
+        _uiDoc.gameObject.SetActive(false);
         EventManager.Trigger(EventType.MAINMENU_OUTRO_START, null);
     }
 
     private void QuitButtonHandler(ClickEvent e)
     {
+        _uiDoc.gameObject.SetActive(false);
         EventManager.Trigger(EventType.QUIT_GAME, null);
     }
     #endregion

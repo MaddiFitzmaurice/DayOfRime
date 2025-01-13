@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _xScrollSpeed: -0.1
-  _scrollTime: 3
+  _scrollTime: 1.5
 --- !u!1 &1001720973
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: db51ad71e495b1548bac21435c40b9af, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 7272e257f53c53f4ea6ade148d1e22f7, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080

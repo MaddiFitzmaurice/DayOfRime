@@ -1,11 +1,14 @@
 // ENUM FOR ALL EVENTS IN GAME
 public enum EventType
 {
-    #region SCENE EVENTS                     
+    #region SERVICES EVENTS                    
     PLAY_GAME,
-    FADING, 
     QUIT_GAME,  
     MAIN_MENU,
+    FADE_OUT_START,
+    FADE_OUT_END,
+    FADE_IN_START,
+    FADE_IN_END,
     #endregion
 
     #region INK EVENTS

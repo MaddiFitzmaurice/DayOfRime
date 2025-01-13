@@ -36,16 +36,16 @@ public class UnitySceneManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.Subscribe(EventType.PLAY_GAME, PlayGameHandler);
-        EventManager.Subscribe(EventType.QUIT_GAME, QuitGameHandler);
-        EventManager.Subscribe(EventType.MAIN_MENU, MainMenuHandler);
+        EventManager.Subscribe(EventType.PLAY_GAME, PlayGameUIHandler);
+        EventManager.Subscribe(EventType.QUIT_GAME, QuitGameUIHandler);
+        EventManager.Subscribe(EventType.MAIN_MENU, MainMenuUIHandler);
     }
 
     private void OnDisable()
     {
-        EventManager.Unsubscribe(EventType.PLAY_GAME, PlayGameHandler);
-        EventManager.Unsubscribe(EventType.QUIT_GAME, QuitGameHandler);
-        EventManager.Unsubscribe(EventType.MAIN_MENU, MainMenuHandler);
+        EventManager.Unsubscribe(EventType.PLAY_GAME, PlayGameUIHandler);
+        EventManager.Unsubscribe(EventType.QUIT_GAME, QuitGameUIHandler);
+        EventManager.Unsubscribe(EventType.MAIN_MENU, MainMenuUIHandler);
     }
 
     // After Services Scene is loaded in, additively load in the MainMenu scene
@@ -88,27 +88,17 @@ public class UnitySceneManager : MonoBehaviour
     // Gameplay to MainMenu Scene Sequence
     IEnumerator GameplayToMainMenu()
     {
-        // EventManager.EventTrigger(EventType.DISABLE_GAMEPLAY_INPUTS, null);
-        // EventManager.EventTrigger(EventType.FADING, false);
-        // yield return StartCoroutine(_fader.NormalFadeOut());
         yield return StartCoroutine(UnloadScene(_gameplayIndex));
         yield return StartCoroutine(LoadScene(_mainMenuIndex));
-        // yield return StartCoroutine(_fader.NormalFadeIn());
-        // EventManager.EventTrigger(EventType.FADING, true);
-        // EventManager.EventTrigger(EventType.ENABLE_MAINMENU_INPUTS, null);
+        EventManager.Trigger(EventType.FADE_IN_START, null);
     }
 
     // MainMenu to Gameplay Scene Sequence
-    IEnumerator MainMenuToGameplay(int levelSelected)
+    IEnumerator MainMenuToGameplay()
     {
-        // EventManager.EventTrigger(EventType.DISABLE_MAINMENU_INPUTS, null);
-        // EventManager.EventTrigger(EventType.FADING, false);
-        // yield return StartCoroutine(_fader.NormalFadeOut());
         yield return StartCoroutine(UnloadScene(_mainMenuIndex));
         yield return StartCoroutine(LoadScene(_gameplayIndex));
-        // yield return StartCoroutine(_fader.NormalFadeIn());
-        // EventManager.EventTrigger(EventType.FADING, true);
-        //EventManager.EventTrigger(EventType.ENABLE_GAMEPLAY_INPUTS, null);
+        EventManager.Trigger(EventType.FADE_IN_START, null);
     }
     #endregion
 
@@ -175,20 +165,42 @@ public class UnitySceneManager : MonoBehaviour
 
     #region EVENT HANDLERS
     // When Play Button has been clicked in MainMenu Scene
-    public void PlayGameHandler(object data)
+    private void PlayGameUIHandler(object data)
     {
-        StartCoroutine(MainMenuToGameplay(_gameplayIndex));
+        EventManager.Subscribe(EventType.FADE_OUT_END, PlayGameHandler);
+        EventManager.Trigger(EventType.FADE_OUT_START, null);
+    }
+
+    // When Fade Out has ended
+    private void PlayGameHandler(object data)
+    {
+        EventManager.Unsubscribe(EventType.FADE_OUT_END, PlayGameHandler);
+        StartCoroutine(MainMenuToGameplay());
     }
 
     // When Main Menu Button has been clicked in Gameplay Scene
-    public void MainMenuHandler(object data)
+    private void MainMenuUIHandler(object data)
     {
+        EventManager.Subscribe(EventType.FADE_OUT_END, MainMenuHandler);
+        EventManager.Trigger(EventType.FADE_OUT_START, null);
+    }
+
+    private void MainMenuHandler(object data)
+    {
+        EventManager.Unsubscribe(EventType.FADE_OUT_END, MainMenuHandler);
         StartCoroutine(GameplayToMainMenu());
     }
 
     // When Quit Button has been clicked in MainMenu Scene
-    public void QuitGameHandler(object data)
+    private void QuitGameUIHandler(object data)
     {
+        EventManager.Subscribe(EventType.FADE_OUT_END, QuitGameHandler);
+        EventManager.Trigger(EventType.FADE_OUT_START, null);
+    }
+
+    private void QuitGameHandler(object data)
+    {
+        EventManager.Unsubscribe(EventType.FADE_OUT_END, QuitGameHandler);
         StartCoroutine(QuitGame());
     }
     #endregion

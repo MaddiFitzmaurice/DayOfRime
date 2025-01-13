@@ -1,0 +1,17 @@
+.fade-in {
+    opacity: 0;
+    transition-duration: 1.25s;
+    transition-property: opacity;
+    transition-timing-function: linear;
+}
+
+.fade-out {
+    opacity: 1;
+    transition-duration: 1.25s;
+    transition-property: opacity;
+    transition-timing-function: linear;
+}
+
+.fader {
+    background-color: rgb(0, 0, 0);
+}
